@@ -1,0 +1,735 @@
+/**
+ * Hydrothermal Vent Database - Main Stylesheet
+ * SET08101 Web Technologies Coursework
+ * This stylesheet defines the visual design and layout for the Hydrothermal Vent Database website.
+ * It includes styles for typography, layout, components (like tables, forms, buttons), and responsive 
+ * design adjustments for mobile devices.
+ */
+
+/*
+   -----VARIABLES-----
+*/
+:root {
+    --ink:        #1a1410;
+    --ink1:    #fff9f3;
+    --ink2:  #a08d7c;
+    --paper:      #000000;
+    --paper1: #3f3e3b;
+    --paper2: #e0d9cc;
+    --amber:      #c8750a;
+    --amber1:  #a85e08;
+    --amber2: #fdf3e3;
+    --rust:       #8b3a1a;
+    --teal:       #456b6b;
+    --teal1:  #c1c9c9;
+    --border:     #c8bfb0;
+    --darkborder:#8a7a6e;
+    --radius:     2px;
+    --ease:       0.2s ease;
+    --font-head:  'Georgia', 'Palatino Linotype', serif;
+    --font-body:  'Trebuchet MS', 'Segoe UI', sans-serif;
+    --font-mono:  'Courier New', 'Courier', monospace;
+    --chunk:      3px solid var(--ink);
+}
+
+/*
+    -----GLOBAL STYLES-----
+*/
+
+body {
+    background: var(--paper);
+    color: var(--ink1);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+    -----FONTS-----
+ */
+h1 {
+    font-family: var(--font-head);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: normal;
+    font-style: italic;
+    letter-spacing: .01em;
+    color: var(--ink1);
+}
+
+h2 {
+    font-family: var(--font-head);
+    font-size: 1.35rem;
+    font-weight: bold;
+    color: var(--ink1);
+    margin-bottom: .75rem;
+    padding-bottom: .4rem;
+    border-bottom: var(--chunk);
+}
+
+h3 {
+    font-family: var(--font-mono);
+    font-size: .85rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--amber);
+    margin-bottom: .4rem;
+}
+
+p { color: var(--ink1); margin-bottom: 1rem; }
+
+a {
+    color: var(--teal);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--ease);
+}
+a:hover { color: var(--amber); text-decoration: none; }
+
+/*
+   -----HEADER-----
+*/
+header {
+    background: var(--ink);
+    color: var(--ink1);
+    padding: .85rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    border-bottom: 4px solid var(--amber);
+}
+
+header h1 {
+    color: var(--ink1);
+    font-size: 1.1rem;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+/* header h1::before {
+    content: '◆ ';
+    color: var(--amber);
+    font-style: normal;
+    font-size: .9rem;
+} */
+
+/* -----NAV----- */
+nav {
+    display: flex;
+    align-items: center;
+    gap: .1rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--paper2);
+    font-size: .8rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    padding: .35rem .8rem;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: all var(--ease);
+    border-radius: var(--radius);
+}
+
+nav a:hover {
+    color: var(--amber);
+    border-color: var(--amber1);
+    background: rgba(200, 117, 10, .1);
+}
+
+nav a.active {
+    color: var(--amber);
+    border-color: var(--amber);
+    background: rgba(200, 117, 10, .12);
+}
+
+/* -----MAIN----- */
+main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+/* -----STATS ROW----- */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: .75rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-box {
+    background: var(--paper1);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: .9rem 1rem;
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-head);
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: .2rem;
+}
+
+.stat-label {
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--ink2);
+}
+
+/* -----SEARCH BAR----- */
+.search-bar {
+    background: var(--paper1);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.search-bar .form-group {
+    flex: 1;
+    min-width: 140px;
+    margin-bottom: 0;
+    color: var(--ink2);
+}
+
+/* -----TABLE----- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+thead {
+    background: var(--ink);
+}
+
+th {
+    padding: .75rem 1rem;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--amber);
+    font-weight: normal;
+}
+
+td {
+    padding: .75rem 1rem;
+    color: var(--ink1);
+    border-bottom: 1px solid var(--border);
+    font-size: .9rem;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tbody tr { transition: background var(--ease); }
+tbody tr:hover { background: var(--amber1); }
+td:first-child { color: var(--ink2); font-weight: bold; }
+
+/* -----BADGES----- */
+.badge {
+    display: inline-block;
+    padding: .15rem .55rem;
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    letter-spacing: .05em;
+    white-space: nowrap;
+    border: 1px solid;
+}
+
+.badge-type {
+    background: var(--teal1);
+    color: var(--teal);
+    border-color: var(--teal);
+}
+
+.badge-depth {
+    background: var(--amber1);
+    color: var(--black);
+    border-color: var(--amber);
+}
+
+/* -----BUTTONS----- */
+.btn {
+    display: inline-block;
+    padding: .5rem 1.1rem;
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all var(--ease);
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.btn-primary {
+    background: var(--ink1);
+    color: var(#ffffff);
+    border-color: var(--ink);
+}
+.btn-primary:hover {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.btn-warm {
+    background: transparent;
+    color: var(--amber1);
+    border-color: var(--amber);
+}
+.btn-warm:hover {
+    background: var(--amber);
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.btn-danger {
+    background: transparent;
+    color: var(--rust);
+    border-color: var(--rust);
+}
+.btn-danger:hover {
+    background: var(--rust);
+    color: var(--paper);
+    text-decoration: none;
+}
+
+.btn-muted {
+    background: transparent;
+    color: var(--ink2);
+    border-color: var(--border);
+}
+.btn-muted:hover {
+    color: var(--ink);
+    border-color: var(--darkborder);
+    text-decoration: none;
+}
+
+.btn-sm { padding: .3rem .7rem; font-size: .7rem; }
+
+/* -----FORMS----- */
+.form-group { margin-bottom: 1.1rem; }
+
+label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--ink2);
+    margin-bottom: .35rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: .6rem .9rem;
+    background: var(--paper);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--ink1);
+    font-family: var(--font-body);
+    font-size: .92rem;
+    transition: border-color var(--ease);
+    appearance: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--ink);
+}
+
+input::placeholder, textarea::placeholder { color: var(--ink2); }
+select option { background: var(--paper); }
+textarea { resize: vertical; min-height: 120px; }
+
+
+input.error, select.error, textarea.error { border-color: var(--rust); }
+
+.field-error {
+    display: block;
+    color: var(--rust);
+    font-size: .75rem;
+    font-family: var(--font-mono);
+    margin-top: .3rem;
+}
+
+/* -----NATIVE BUTTON ELEMENT OVERRIDE----- */
+button {
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all var(--ease);
+}
+
+button.btn-primary {
+    background: var(--ink);
+    color: var(--ink1);
+    border: 2px solid var(--ink);
+    padding: .5rem 1.1rem;
+}
+button.btn-primary:hover {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--ink);
+}
+
+/* -----ALERTS----- */
+.alert-info {
+    background: var(--amber1);
+    border-color: var(--amber);
+    color: var(--amber1);
+}
+
+/* success-message / error-message used by contact.php */
+.success-message {
+    display: block;
+    padding: .8rem 1.1rem;
+    background: var(--teal1);
+    border-left: 4px solid var(--teal);
+    color: var(--teal);
+    font-family: var(--font-mono);
+    font-size: .88rem;
+    margin-bottom: 1rem;
+    border-radius: var(--radius);
+}
+
+.error-message {
+    display: block;
+    padding: .8rem 1.1rem;
+    background: #fdf0ed;
+    border-left: 4px solid var(--rust);
+    color: var(--rust);
+    font-family: var(--font-mono);
+    font-size: .88rem;
+    margin-bottom: 1rem;
+    border-radius: var(--radius);
+}
+
+/*
+    -----CARD----- 
+*/
+.card {
+    background: var(--paper1);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+/*
+    VENT DETAIL DL
+*/
+dl {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: .3rem .75rem;
+    margin-bottom: 1.25rem;
+}
+
+dt {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--ink2);
+    padding: .45rem 0;
+    align-self: start;
+}
+
+dd {
+    color: var(--ink1);
+    padding: .45rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: .92rem;
+}
+
+/*
+   -----FAUNA GRID-----
+*/
+.fauna-card {
+    background: var(--paper1);
+    padding: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: border-color var(--ease);
+}
+.fauna-card:hover {
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    border-color: var(--teal); 
+}
+
+.fauna-card h3 { 
+    color: var(--teal);
+    background: var(--teal1);
+    display: inline-block;
+    padding: .25rem .65rem;
+ }
+.fauna-card .sci {
+    font-style: italic;
+    font-size: .82rem;
+    color: var(--ink2);
+    margin-bottom: .65rem;
+}
+.fauna-card p { font-size: .88rem; margin: 0; }
+
+.fauna-card img {
+    display: block;
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+    min-height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    margin: 0;
+    background: #fff;
+}
+
+.fauna-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+}
+/*
+   -----AUTH BOX-----
+*/
+.auth-wrap {
+    max-width: 420px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+.auth-box {
+    background: var(--paper1);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 2rem;
+}
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/*
+   -----MAP PAGE-----
+*/
+.map-wrap {
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+.map-wrap img { width: 100%; display: block; }
+
+.map-wrap figcaption {
+    background: var(--paper1);
+    border-top: 1px solid var(--border);
+    padding: .5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--ink2);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+/*
+-----SEARCH FILTER (index.php header bar)-----
+*/
+.vent-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: var(--chunk);
+    padding-bottom: .6rem;
+    margin-bottom: 1.25rem;
+}
+
+.vent-list-header h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.search-filter {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    padding: .35rem .85rem;
+    background: transparent;
+    color: var(--ink2);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all var(--ease);
+}
+.search-filter:hover, .search-filter.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+
+/* 
+-----SEARCH PANEL-----
+ */
+.search-panel {
+    display: none;
+    background: var(--paper1);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    margin-bottom: 1.25rem;
+}
+.search-panel.open { display: block; }
+.search-panel-inner {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+.search-panel-inner .form-group {
+    flex: 1;
+    min-width: 140px;
+    margin-bottom: 0;
+}
+
+/* 
+-----AUTOFILL FIX-----
+*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--paper) inset !important;
+    box-shadow: 0 0 0 1000px var(--paper) inset !important;
+    -webkit-text-fill-color: var(--ink1) !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+/* 
+-----FOOTER----- 
+*/
+footer {
+    background: var(--ink);
+    color: var(--ink2);
+    border-top: 4px solid var(--amber);
+    padding: 1.25rem 2rem;
+    text-align: center;
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    flex-shrink: 0;
+}
+
+footer p { color: var(--ink2); margin: 0; }
+
+/* 
+-----RESPONSIVE-----
+*/
+@media (max-width: 768px) {
+    header  { padding: .75rem 1rem; }
+    main    { padding: 0 1rem; margin: 1rem auto; }
+    dl { grid-template-columns: 1fr; }
+    dt { padding-bottom: 0; }
+    dd { padding-top: .15rem; margin-bottom: .4rem; }
+    th, td  { padding: .55rem .65rem; }
+    .search-panel-inner { flex-direction: column; }
+    .fauna-grid { grid-template-columns: 1fr; }
+    .vent-list-header { flex-wrap: wrap; }
+}
+
+@media (max-width: 520px) {
+    th:nth-child(3), td:nth-child(3),
+    th:nth-child(5), td:nth-child(5) { display: none; }
+}
+
+/* -----ADMIN UTILITIES----- */
+
+/* Row of action buttons inside a table cell (manage.php) */
+.action-btns {
+    display: flex;
+    gap: .4rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Save / Cancel button row at the bottom of admin forms */
+.form-actions {
+    display: flex;
+    gap: .75rem;
+    margin-top: .5rem;
+    flex-wrap: wrap;
+}
+
+/* Extra top margin for the Fauna Records heading on edit_vent.php */
+.section-heading {
+    margin-top: 2rem;
+}
+
+/* Dimmed helper text e.g. "No fauna records yet" */
+.text-muted {
+    color: var(--ink2);
+}
+
+.about-card{
+    max-width: 700px; 
+    margin: 2rem auto;
+}
+
+#map {
+    width: 100%;
+    height: 350px;
+    margin: 2rem 0;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    z-index: 0;
+}
